@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-podnextjs-dev-173717-authRole",
+      "UnauthRoleArn": "arn:aws:iam::473143679199:role/amplify-podnextjs-dev-173717-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::473143679199:role/amplify-podnextjs-dev-173717-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-podnextjs-dev-173717-deployment",
+      "UnauthRoleName": "amplify-podnextjs-dev-173717-unauthRole",
+      "StackName": "amplify-podnextjs-dev-173717",
+      "StackId": "arn:aws:cloudformation:eu-central-1:473143679199:stack/amplify-podnextjs-dev-173717/3dbf81a0-2362-11eb-871a-06a563057a14",
+      "AmplifyAppId": "dcmsxrf7lqjgu"
+    },
+    "categories": {
+      "auth": {
+        "podnextjs5f149840": {}
+      }
+    }
+  }
+}

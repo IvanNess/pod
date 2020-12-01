@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "podnextjs",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authpodnextjs5f149840",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

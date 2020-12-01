@@ -1,0 +1,218 @@
+type User @model
+@auth(rules: [
+  { allow: owner, ownerField: "username" },
+  { allow: public, operations: [read, delete] },
+  { allow: private, operations: [read] },
+]){
+  id: ID!
+  isClient: Boolean
+  isService: Boolean
+  isOrganization: Boolean
+  companyName: String
+  firstName: String
+  lastName: String
+  birthDate: AWSDateTime
+  username: String
+  login: String!
+  email: String!
+  mobile: String
+  NIP: String
+  adressId: ID!
+  adress: Adress @connection(fields: ["adressId"])
+  orders: [Order]! @connection(keyName: "ordersByCustomerId", fields: ["id"])
+  services: [Order]! @connection(keyName: "ordersByServiceId", fields: ["id"])
+  offers: [Offer]! @connection(keyName: "offersByCandidateId", fields: ["id"])
+  messages: [Message]! @connection(keyName: "messagesByUserId", fields: ["id"])
+  reviewsCreated: [Review]! @connection(keyName: "reviewsByReviewerId", fields: ["id"])
+  reviewsReceived: [Review]! @connection(keyName: "reviewsByReviewedId", fields: ["id"])
+  nationalityId: ID!
+  nationality: Nationality @connection(fields: ["nationalityId"])
+}
+
+type Order @model
+@auth(rules: [
+  { allow: owner, ownerField: "creatorUsername" },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] },
+])
+@key(name: "ordersByServiceId", fields: ["serviceId"])
+@key(name: "ordersByCustomerId", fields: ["customerId"])
+@key(name: "ordersByCategoryId", fields: ["categoryId"])
+@key(name: "ordersByAdressId", fields: ["adressId"])
+@key(name: "ordersByCityId", fields: ["cityId"])
+{
+  id: ID!
+  info: String
+  title: String
+  description: String
+  images: [String]!
+  creatorUsername: String
+  customerId: ID! 
+  customer: User! @connection(fields: ["customerId"])
+  isServiced: Boolean
+  isActive: Boolean
+  serviceId: ID!
+  service: User! @connection(fields: ["serviceId"])
+  offers: [Offer]! @connection(keyName: "offersByOrderId" fields: ["id"])
+  messages: [Message]! @connection(keyName: "messagesByOrderId", fields: ["id"])
+  categoryId: ID!
+  category: Category! @connection(fields: ["categoryId"])
+  subCategories: [OrderSubCategory]! @connection(keyName: "ordersSubCategoryByOrderId", fields: ["id"])
+  adressId: ID!
+  adress: Adress! @connection(fields: ["adressId"])
+  cityId: ID!
+  city: City! @connection(fields: ["cityId"])
+  reviews: [Review]! @connection(keyName: "reviewsByOrderId", fields: ["id"])
+}
+
+type Offer @model 
+@auth(rules: [
+  { allow: owner, ownerField: "creatorUsername" },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] },
+])
+@key(name: "offersByOrderId", fields: ["orderId"])
+@key(name: "offersByCandidateId", fields: ["candidateId"]){
+  id: ID!
+  creatorUsername: String
+  orderId: ID!
+  isApproved: Boolean
+  order: Order! @connection(fields: ["orderId"])
+  candidateId: ID!
+  candidate: User! @connection(fields: ["candidateId"])
+}
+
+type Message @model 
+@auth(rules: [
+  { allow: owner, ownerField: "creatorUsername" },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] }
+])
+@key(name: "messagesByOrderId", fields:["orderId"])
+@key(name: "messagesByUserId", fields: ["userId"]){
+  id: ID!
+  creatorUsername: String
+  orderId: ID!
+  order: Order! @connection(fields: ["orderId"])
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+}
+
+type Category @model
+@auth(rules: [
+  { allow: private },
+  { allow: public }
+]){
+  id: ID!
+  name: String
+  stringCode: String
+  orders: [Order]! @connection(keyName: "ordersByCategoryId", fields: ["id"])
+  subCategories: [SubCategory]! @connection(name: "subCategoryByCategoryId", fields: ["id"])
+}
+
+type SubCategory @model 
+@auth(rules: [
+  { allow: private },
+  { allow: public }
+])
+@key(name: "subCategoryByCategoryId", fields: ["categoryId"]){
+  id: ID!
+  name: String
+  stringCode: String
+  categoryId: ID!
+  category: Category! @connection(fields: ["categoryId"]) 
+  orders: [OrderSubCategory]! @connection(keyName: "ordersSubCategoryBySubCategoryId", fields: ["id"])
+}
+
+type OrderSubCategory @model
+@auth(rules: [
+  { allow: private },
+  { allow: public }
+])
+@key(name: "ordersSubCategoryByOrderId", fields: ["orderId"])
+@key(name: "ordersSubCategoryBySubCategoryId", fields: ["subCategoryId"]){
+  id: ID!
+  orderId: ID!
+  order: Order! @connection(fields: ["orderId"])
+  subCategoryId: ID!
+  subCategory: SubCategory! @connection(fields: ["subCategoryId"])
+}
+
+type Review @model 
+@auth(rules: [
+  { allow: owner, ownerField: "creatorUsername" },
+  { allow: public, operations: [read] }
+])
+@key(name: "reviewsByReviewerId", fields: ["reviewerId"])
+@key(name: "reviewsByReviewedId", fields: ["reviewedId"])
+@key(name: "reviewsByOrderId", fields: ["orderId"])
+{
+  id: ID!
+  creatorUsername: String
+  rating: Int!
+  text: String
+  type: ReviewType
+  orderId: ID!
+  order: Order @connection(fields: ["orderId"])
+  reviewerId: ID!
+  reviewer: User! @connection(fields: ["reviewerId"])
+  reviewedId: ID!
+  reviewed: User! @connection(fields: ["reviewedId"])
+}
+
+enum ReviewType{ ReviewOnCustomer, ReviewOnService }
+
+type Adress @model
+@auth(rules: [
+  { allow: owner, ownerField: "creatorUsername" },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] },
+]){
+  id: ID!
+  creatorUsername: String
+  regionId: ID!
+  region: Region @connection(fields: ["regionId"])
+  cityId: ID!
+  city: City @connection(fields: ["cityId"])
+  street: String
+  house: Int
+  nationality: Nationality
+  postcode: String
+  orders: [Order]! @connection(keyName: "ordersByAdressId", fields: ["id"])
+}
+
+type City @model
+@auth(rules: [
+  { allow: private },
+  { allow: public }
+])
+@key(name: "citiesByRegionId", fields:["regionId"]){
+  id: ID!
+  name: String
+  stringCode: String
+  regionId: ID!
+  region: Region @connection(fields: ["regionId"])
+  orders: [Order]! @connection(keyName: "ordersByCityId", fields: ["id"])
+}
+
+type Region @model
+@auth(rules: [
+  { allow: private },
+  { allow: public }
+]){
+  id: ID!
+  name: String
+  stringCode: String
+  cities: [City]! @connection(keyName: "citiesByRegionId", fields: ["id"])
+}
+
+type Nationality @model
+@auth(rules: [
+  { allow: private },
+  { allow: public }
+]){
+  id: ID!
+  name: String
+  stringCode: String
+  isMain: Boolean
+}

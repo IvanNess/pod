@@ -14,3 +14,32 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ant-form-item-control-input .ant-select-single .ant-select-selector .ant-select-selection-search-input {
+  width: 0;
+}
+
+.title-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav{
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-align-end{
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}

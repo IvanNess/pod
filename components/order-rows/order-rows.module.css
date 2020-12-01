@@ -1,0 +1,30 @@
+.orderRows{
+    display: flex;
+    flex-direction: column;
+}
+
+.orderRow{
+    display: flex;
+    flex-direction: row;
+    text-align: end;
+} 
+
+.category, .sub, .city, .title{
+    padding: 0 1rem;
+}
+
+.title{
+    width: 10rem;
+}
+
+.category{
+    width: 10rem;
+}
+
+.sub{
+    width: 10rem;
+}
+
+.city{
+    width: 10rem;
+}
