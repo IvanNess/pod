@@ -1,26 +1,28 @@
 import { useEffect, useState } from 'react'
 import OrderOfferComponent from './order-offer-component'
+import { useSelector } from 'react-redux'
 
-const CustomerOrderComponent = ({user, order}) => {
+const CustomerOrderComponent = ({order}) => {
+
+    const {data: user, loading, error} = useSelector(state=>state.user)
 
     console.log('order user', user)
+    console.log('order', order)
 
-    const [{offers, loading, err}, setOffers] = useState({
-        offers: [], loading: true, err: null
-    })
+    const [offers, setOffers] = useState(null)
 
     useEffect(()=>{
         if(order && user ){
-            setOffers({offers: order.offers, loading: false, err: null})
+            setOffers(order.offers.items)
         }
     }, [user, order])
     
     return (
         <>
 
-            {loading && <p>Offers are being loaded...</p>}
-            {!loading && offers.map(offer=>(
-                <div>
+            {offers===null && <p>Offers are being loaded...</p>}
+            {offers && offers.map(offer=>(
+                <div key={offer.id} >
                     <OrderOfferComponent offer={offer}/>
                 </div>
             ))}

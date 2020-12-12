@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import UserInfoRow from '../../components/user-info-row'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { finishLoading } from '../../redux/actions'
 
 
 const UserInfo = () => {
@@ -10,12 +11,20 @@ const UserInfo = () => {
 
     const {data: user, loading, error} = useSelector(state=>state.user)
 
-    if(loading || user===null)
-        return( <div className="center"><p>loading...</p></div>)
+    const dispatch = useDispatch()
+
+    // useEffect(()=>{
+    //     dispatch(finishLoading())
+    // }, [dispatch])
 
     if(user===false){
         router.push(`/login`)
+        return( <div className="center"><p>wait a little...</p></div>)
     }
+
+
+    if(loading || user===null)
+        return( <div className="center"><p>(user) loading...</p></div>)
     
     return ( 
         <div>

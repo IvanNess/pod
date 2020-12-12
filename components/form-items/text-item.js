@@ -1,13 +1,13 @@
-import { Form, Input, Select } from 'antd'
+import { Form, Input } from 'antd'
 
-const TextItem = () => {
+const TextItem = ({text="You could type here..."}) => {
     return (
         <Form.Item
             name="info"
             label="Text Information"
         >
             <Input.TextArea
-                placeholder="You could type here..."
+                placeholder={text}
                 autoSize={{ minRows: 2}}
             />
         </Form.Item>

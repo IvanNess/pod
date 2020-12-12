@@ -25,9 +25,6 @@ const onFinish = async values => {
     console.log('Received values of form: ', values)
     const { name, stringCode, regionId } = values
     try {
-        const cur = await Auth.currentAuthenticatedUser()
-        console.log(cur)
-        
         const data = await createCityAndGet({name, stringCode, regionId})
         const id = data.id
         console.log(id)

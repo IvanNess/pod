@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { getCitiesByRegionId } from '../../utils/graphql-utils'
+import { getCitiesByRegionId, getCitiesByRegionName } from '../../utils/graphql-utils'
 import { Form, Select } from 'antd'
 
-const CityItem = ({regionId = null, onChangeCb})=>{
+const CityItem = ({regionName = null, onChangeCb})=>{
 
     const [{items, isLoading, err}, setItems] = useState({items: [], isLoading: true, err: null})
 
     const fetch = async()=>{
         try{
-            const items = await getCitiesByRegionId(regionId)
+            const items = await getCitiesByRegionName(regionName)
             console.log(items)
             setItems({items, isLoading: false, err: null}) 
         } catch(err){
@@ -19,13 +19,13 @@ const CityItem = ({regionId = null, onChangeCb})=>{
 
     useEffect(()=>{
         fetch() 
-    }, [regionId])
+    }, [regionName])
 
     // const [$input, set$input] = useState(null)
 
     const onChange = (value)=>{
-        const regionId = items.find(item=>item.id===value).region.id
-        onChangeCb(regionId)
+        const regionName = items.find(item=>item.name===value).region.name
+        onChangeCb(regionName)
     }
 
     const onFocus = (e)=>{
@@ -47,7 +47,7 @@ const CityItem = ({regionId = null, onChangeCb})=>{
 
     return (
         <Form.Item 
-            name="miastoId"
+            name="miasto"
             label="Miasto"
             rules={[ { required: true, message: "Please input a city" }]}
         >
@@ -59,7 +59,7 @@ const CityItem = ({regionId = null, onChangeCb})=>{
                 onBlur={onBlur}
                 // onClick={onClick}
             >
-                {items.map(item=><Select.Option readOnly={true} value={item.id} key={item.id}>{item.name}</Select.Option>)}
+                {items.map(item=><Select.Option readOnly={true} value={item.name} key={item.id}>{item.name}</Select.Option>)}
             </Select>
         </Form.Item>
     )

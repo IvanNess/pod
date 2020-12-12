@@ -34,7 +34,7 @@ const RegionItem = ({onChange})=>{
 
     return (
         <Form.Item 
-            name="wojewodstwoId"
+            name="wojewodstwo"
             label="Województwo"
             rules={[ { required: true, message: "Please input a region" }]}
         >
@@ -46,7 +46,7 @@ const RegionItem = ({onChange})=>{
                 onBlur={onBlur}
                 onClick={onClick}
             >
-                {items.map(item=><Select.Option value={item.id} key={item.id}>{item.name}</Select.Option>)}
+                {items.map(item=><Select.Option value={item.name} key={item.id}>{item.name}</Select.Option>)}
             </Select>
         </Form.Item>
     )

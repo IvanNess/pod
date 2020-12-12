@@ -8,7 +8,7 @@ const OrderRows = ({orders}) => {
             {orders.map(order=>{
                 return(
                     <div className={styles.orderRow} key={order.id}>
-                        <div className={styles.title}><Link href={`/orders/${order.id}`}><a>{order.title}</a></Link></div>
+                        <div className={styles.title}><Link href={`/orders/${order.stringCode}`}><a>{order.title}</a></Link></div>
                         <div className={styles.category}>{order.category.name}</div>
                         {/* <div className={styles.sub}>{order.sub}</div> */}
                         <div className={styles.city}>{order.city.name}</div>

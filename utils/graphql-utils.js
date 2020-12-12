@@ -1,11 +1,11 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 
-import { listRegions, listNationalitys, listCitys, listCategorys, listUsers, listSubCategorys, getOrder, listOrders, } from "../src/graphql/queries"
-import {createRegion, createCity, createNationality, createAdress, createCategory, createSubCategory, createOrder, createOrderSubCategory, createOffer, deleteOffer} from '../src/graphql/mutations'
+import { listRegions, listNationalitys, listCitys, listCategorys, listUsers, listSubCategorys, getOrder, listOrders, listDialogs, } from "../src/graphql/queries"
+import {createRegion, createCity, createNationality, createAdress, createCategory, createSubCategory, createOrder, createOrderSubCategory, createOffer, deleteOffer, createDialog, updateOffer, createMessage} from '../src/graphql/mutations'
 
 export const getCitiesByRegionId = async regionId => {
     let res
-    if(regionId===null){
+    if(regionId===undefined){
         res = await API.graphql({
             query: listCitys, 
             //authMode: "AMAZON_COGNITO_USER_POOLS"
@@ -20,26 +20,102 @@ export const getCitiesByRegionId = async regionId => {
     return res.data.listCitys.items
 }
 
-export const getSubcategoriesByCategoryId = async categoryId => {
+export const getCityByCityAndRegionName = async ({cityName, regionName}) => {
+    console.log('getCityByCityAndRegionName', cityName, regionName)
+    const res = await API.graphql({
+        query: listCitys, 
+        variables: { filter: {name: {eq: cityName}, regionName: {eq: regionName}}},
+        //authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    console.log('getCityIdByCityAndRegionName res', res)
+    return res.data.listCitys.items[0]
+}
+
+export const getCitiesByRegionName = async regionName => {
+    console.log('getCitiesByRegionName regionName', regionName)
     let res
-    if(!categoryId){
+    if(regionName===null){
         res = await API.graphql({
-            query: listSubCategorys, 
+            query: listCitys, 
+            //authMode: "AMAZON_COGNITO_USER_POOLS"
         })
     }else{
         res = await API.graphql({
-            query: listSubCategorys, 
-            variables: { filter: {categoryId: {eq: categoryId}}},
+            query: listCitys, 
+            variables: { filter: {regionName: {eq: regionName}}},
+            //authMode: "AMAZON_COGNITO_USER_POOLS"
         })
     }
+    return res.data.listCitys.items
+}
+
+export const getSubcategoriesByCategoryId = async categoryId => {
+    let res
+    console.log('getSubcategoriesByCategoryId categoryId', categoryId)
+    try {
+        if(!categoryId){
+            res = await API.graphql({
+                query: listSubCategorys, 
+            })
+        }else{
+            res = await API.graphql({
+                query: listSubCategorys, 
+                variables: { filter: {categoryId: {eq: categoryId}}},
+            })
+        }
+    } catch (error) {
+        console.log('ERROR', error)
+    }
+    console.log('getSubcategoriesByCategoryId res', res)
     return res.data.listSubCategorys.items
 }
 
-export const getRegionByStringCode = async stringCode => await API.graphql({
-    query: listRegions, 
-    variables: { filter: {stringCode: {eq: stringCode}}},
-    //authMode: "AMAZON_COGNITO_USER_POOLS"
-})
+export const getRegionByName = async name => {
+    const res = await API.graphql({
+        query: listRegions, 
+        variables: { filter: {name: {eq: name}}},
+        //authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    return res.data.listRegions.items[0]
+}
+
+export const getCityByName = async name => {
+    const res = await API.graphql({
+        query: listCitys, 
+        variables: { filter: {name: {eq: name}}},
+        //authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    return res.data.listCitys.items[0]
+}
+
+export const getRegionById = async id => {
+    const res = await API.graphql({
+        query: listRegions, 
+        variables: { filter: {id: {eq: id}}},
+        //authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    return res.data.listRegions.items[0]
+}
+
+export const getDialog = async ({orderStingCode, candidateUsername}) => {
+    const res = await API.graphql({
+        query: listDialogs, 
+        variables: { filter: {isAllowed: {eq: true}, orderStingCode: {eq: orderStingCode}, 
+            candidateUsername: {eq: candidateUsername}
+        }},
+        //authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    return res.data.listDialogs.items[0]
+}
+
+export const getDialogById = async (id) => {
+    const res = await API.graphql({
+            query: listDialogs, 
+            variables: { filter: {id: {eq: id}}},
+        //authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    return res.data.listDialogs.items[0]
+}
 
 export const getUserByUsername = async username => {
     const res = await API.graphql({
@@ -56,13 +132,14 @@ export const getUserByEmail = async email => {
         query: listUsers, 
         variables: { filter: {email: {eq: email}}},
     })
+    console.log('getuserbyemail', res)
     return res.data.listUsers.items[0]
 }
 
 
 export const getRegionIdByStringCode = async (stringCode) =>{
-    const regionData = await getRegionByStringCode(stringCode)
-    return regionData.data.listRegions.items[0].id
+    const region = await getRegionByStringCode(stringCode)
+    return region.id
 }
 
 export const getCategories = async () => {
@@ -97,11 +174,62 @@ export const getOrderById = async orderId =>{
     return res.data.getOrder
 } 
 
+export const getOrderByStringCode = async stringCode =>{
+    const res = await API.graphql({
+        query: listOrders,
+        variables: {filter: {stringCode: {eq: stringCode}}},
+    })
+    return res.data.listOrders.items[0]
+} 
+
 export const getOrders = async () =>{
     const res = await API.graphql({
         query: listOrders
     })
     return res.data.listOrders.items
+} 
+
+export const getOrdersBySomeIds = async (ids) =>{
+    if(!ids)
+        return getOrders()
+    let filterVariables = {}
+    for (const key in ids) {
+        if (object.hasOwnProperty(key)) {
+            filterVariables = {...filterVariables, key: {eq: object[key]}}
+        }
+    }
+    const res = await API.graphql({
+        query: listOrders,
+        variables: {filter: filterVariables}
+    })
+    return res.data.listOrders.items
+} 
+
+export const getOrderStringCode = async orderTitle =>{
+    const initStringCode = orderTitle.replace(' ', '')
+
+    async function checkStringCodeAndGetNewOne(stringCode){
+        console.log('stringcode', stringCode)
+
+        async function getOrders(stringCode){
+            const res = await API.graphql({
+                query: listOrders,
+                variables: {filter: {stringCode: {contains: stringCode}}},
+            })
+            return res.data.listOrders.items
+        }
+
+        const orders = await getOrders(stringCode)
+        console.log('orders', orders)
+        if(orders.length === 0){
+            console.log('length ===0', stringCode)
+            return stringCode
+        } else{
+            return await checkStringCodeAndGetNewOne(stringCode + '_' + orders.length)
+        }
+    }
+
+    return await checkStringCodeAndGetNewOne(initStringCode)
 } 
 
 export const updateOrderBySubcategoriesAndGet = async ({orderId, subcategoryIds})=>{
@@ -115,13 +243,29 @@ export const updateOrderBySubcategoriesAndGet = async ({orderId, subcategoryIds}
     return await getOrderById(orderId)
 }
 
-export const updateOfferByIsApprovedAndGet = async ({offerId, isApproved})=>{
+export const updateOfferAndGet = async ({offerId, isApproved, dialogId})=>{
+    console.log('updateOfferByIsApprovedAndGet start', offerId)
     const res = await API.graphql({
         query: updateOffer,
-        variables: {input: {id: offerId, isApproved}},
+        variables: {input: {id: offerId, isApproved, dialogId}},
         auth: "AMAZON_COGNITO_USER_POOLS"
     })
+    console.log('updateOfferByIsApprovedAndGet', res)
     return await res.data.updateOffer
+}
+
+export const createDialogAndGet = async ({orderId, offerId, clientId, candidateId, isAllowed, candidateUsername, 
+    clientUsername, orderStingCode, orderTitle})=>{
+    console.log('createDialogAndGet start')
+    const res = await API.graphql({query: createDialog, 
+        variables: {input: {
+            orderId, offerId, clientId, candidateId, isAllowed, candidateUsername, clientUsername, orderStingCode, 
+            orderTitle
+        }},
+        authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    console.log('createDialogAndGet', createDialogAndGet)
+    return res.data.createDialog
 }
 
 export const createSubcategoryAndGet = async ({name, stringCode, categoryId})=>{
@@ -140,7 +284,8 @@ export const createRegionAndGet = async ({name, stringCode})=>{
 }
 
 export const createCityAndGet = async ({name, stringCode, regionId})=>{
-    const res = await API.graphql(graphqlOperation(createCity, {input: {name, stringCode, regionId}}))
+    const region = await getRegionById(regionId)
+    const res = await API.graphql(graphqlOperation(createCity, {input: {name, stringCode, regionId, regionName: region.name}}))
     return res.data.createCity
 }
 
@@ -158,22 +303,31 @@ export const createOfferAndGet = async ({orderId, candidateId})=>{
     return res.data.createOffer
 }
 
+export const createMessageAndGet = async ({creatorId, dialogId, isNew, message, date})=>{
+    const res = await API.graphql({
+        query: createMessage,
+        variables: {input: {creatorId, dialogId, isNew, message, date}},
+        authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+    return res.data.createMessage
+}
+
 export const createOrderAndGet = async ({
-    images=[], customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced
+    images=[], customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced, stringCode
 })=>{
     const res = await API.graphql({
         query: createOrder,
-        variables: {input: {images, customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced}},
+        variables: {input: {images, customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced, stringCode}},
         authMode: "AMAZON_COGNITO_USER_POOLS"
     })
     return res.data.createOrder
 }
 
 export const createOrderAndGetId = async ({
-    images=[], customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced
+    images=[], customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced, stringCode
 })=>{
     const order = await createOrderAndGet({
-        images, customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced
+        images, customerId, serviceId, categoryId, adressId, cityId, title, description, isServiced, stringCode
     })
     return order.id
 }
@@ -187,8 +341,12 @@ export const createAdressAndGet = async ({regionId, cityId, postcode, street})=>
     return res.data.createAdress
 }
 
-export const createAdressAndGetId = async ({regionId, cityId, postcode, street})=>{
-    const adress = await createAdressAndGet({regionId, cityId, postcode, street})
+export const createAdressAndGetId = async ({regionName, cityName, postcode, street})=>{
+    const region = await getRegionByName(regionName)
+    console.log(region)
+    const city = await getCityByName(cityName)
+    console.log(city)
+    const adress = await createAdressAndGet({regionId: region.id, cityId: city.id, postcode, street})
     return adress.id
 }
 

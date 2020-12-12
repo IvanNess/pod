@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import {useRouter} from 'next/router'
-import { getOrderById } from '../../utils/graphql-utils'
+import { getOrderById, getOrderByStringCode } from '../../utils/graphql-utils'
 import ServiceOrderComponent from '../../components/service-order-component'
 import CustomerOrderComponent from '../../components/customer-order-component'
 import { useSelector } from 'react-redux'
@@ -13,10 +13,10 @@ const Order = () => {
 
     const router = useRouter()
 
-    const {data, error} = useSWR(`/api/orders/${router.query.id}`, ()=>getOrderById(router.query.id))
+    const {data, error} = useSWR(`/api/orders/${router.query.id}`, ()=>getOrderByStringCode(router.query.id))
 
-    if(!data && !error)
-        return <p>Loading...</p>
+    if(!data)
+        return <p>(Order) Loading...</p>
 
     const {
         id, images, city, title, category, subCategories, description, isServiced, service, offers, customerId

@@ -1,49 +1,53 @@
 import Link from 'next/link'
 import { Auth } from 'aws-amplify'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUser } from '../redux/actions'
-import { useEffect } from 'react'
+import { fetchUser, logout, startLoading } from '../redux/actions'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 const Menu = () => {
 
     const dispatch = useDispatch()
+
+    const router = useRouter()
 
     useEffect(()=>{
         dispatch(fetchUser())
     }, [dispatch])
 
     const {data: user, loading, error} = useSelector(state=>state.user)
+
     console.log('menu user', user, loading, error)
 
+    const onLogout = async()=>{
+        dispatch(logout())
+    }
 
-    const logout = async()=>{
-        console.log('logout start')
-        setUser({user, loading: true, err: null})
-        try {
-            await Auth.signOut()
-            setUser({user: null, loading: false, err: null})
-            console.log('logout success')
-        } catch (error) {
-            setUser({user: false, loading: false, err})
-            console.log('logout failure')
-        }
+    const click=(e)=>{
+        if(router.asPath===e.target.getAttribute('href'))
+            return
+        dispatch(startLoading())
     }
 
     return (
-        <nav>
-            <div>Logo</div>
-            {!user && !loading && <Link href="/login"><a>Log in</a></Link>}
-            {!user && !loading && <div>Sign up</div>}
-            {user && !loading && <div onClick={logout}>Log out</div>}
-            <div>Language</div>
-            {user && !loading && <div>Profile</div>}
-            {user && !loading && <div>Messages</div>}
-            {user && user.isClient && !loading &&  <Link href="/create-order"><a>Add order</a></Link>}
-            <Link href="/orders"><a>Orders</a></Link>
-            {user && user.isClient && !loading && <div>My orders</div>}
-            {user && !loading && <div>My credits</div>}
-            {user && user.isService && !loading && <div>My offers</div>}
-        </nav>
+        <div className="menu">
+            <nav>
+                <div>Logo</div>
+                {!user && !loading && <Link href="/login"><a onClick={click}>Log in</a></Link>}
+                {!user && !loading && <div>Sign up</div>}
+                {user &&  <div onClick={onLogout}><a>Log out</a></div>}
+                <div>Language</div>
+                {user && <div>Profile</div>}
+                {user && <div>Messages</div>}
+                {user && user.isClient &&  <Link href="/create-order"><a onClick={click}>Add order</a></Link>}
+                <Link href="/orders"><a onClick={click}>Orders</a></Link>
+                {user && user.isClient && <div>My orders</div>}
+                {user && <div>My credits</div>}
+                {user && user.isService && <div>My offers</div>}
+            </nav>
+           {loading && <div>(Menu) Loading...</div>} 
+        </div>
+        
     )
 }
 

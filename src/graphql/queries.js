@@ -29,6 +29,7 @@ export const listUsers = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -84,9 +85,6 @@ export const listUsers = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -116,6 +114,7 @@ export const listUsers = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -125,6 +124,7 @@ export const listUsers = /* GraphQL */ `
         services {
           items {
             id
+            stringCode
             info
             title
             description
@@ -180,9 +180,6 @@ export const listUsers = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -212,6 +209,7 @@ export const listUsers = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -222,8 +220,9 @@ export const listUsers = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -248,53 +247,7 @@ export const listUsers = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -365,6 +318,7 @@ export const listUsers = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -435,6 +389,7 @@ export const listUsers = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -474,6 +429,7 @@ export const listUsers = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -496,11 +452,9 @@ export const listUsers = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -556,6 +510,7 @@ export const getUser = /* GraphQL */ `
       orders {
         items {
           id
+          stringCode
           info
           title
           description
@@ -595,9 +550,6 @@ export const getUser = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -653,9 +605,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -686,20 +635,10 @@ export const getUser = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -711,9 +650,6 @@ export const getUser = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
@@ -769,6 +705,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -785,11 +722,9 @@ export const getUser = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -804,6 +739,7 @@ export const getUser = /* GraphQL */ `
       services {
         items {
           id
+          stringCode
           info
           title
           description
@@ -843,9 +779,6 @@ export const getUser = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -901,9 +834,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -934,20 +864,10 @@ export const getUser = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -959,9 +879,6 @@ export const getUser = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
@@ -1017,6 +934,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -1033,11 +951,9 @@ export const getUser = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -1053,8 +969,9 @@ export const getUser = /* GraphQL */ `
         items {
           id
           creatorUsername
-          orderId
           isApproved
+          dialogId
+          orderId
           candidateId
           createdAt
           updatedAt
@@ -1085,9 +1002,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -1116,6 +1030,7 @@ export const getUser = /* GraphQL */ `
           }
           order {
             id
+            stringCode
             info
             title
             description
@@ -1171,9 +1086,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -1203,166 +1115,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
-              createdAt
-              updatedAt
-            }
-          }
-        }
-        nextToken
-      }
-      messages {
-        items {
-          id
-          creatorUsername
-          orderId
-          userId
-          createdAt
-          updatedAt
-          user {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          order {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -1409,9 +1162,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -1465,9 +1215,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -1496,6 +1243,7 @@ export const getUser = /* GraphQL */ `
           }
           order {
             id
+            stringCode
             info
             title
             description
@@ -1551,9 +1299,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -1583,6 +1328,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -1629,9 +1375,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -1685,9 +1428,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -1716,6 +1456,7 @@ export const getUser = /* GraphQL */ `
           }
           order {
             id
+            stringCode
             info
             title
             description
@@ -1771,9 +1512,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -1803,6 +1541,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -1831,6 +1570,7 @@ export const getUser = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -1886,9 +1626,6 @@ export const getUser = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -1918,6 +1655,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -1929,28 +1667,9 @@ export const getUser = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -1974,6 +1693,7 @@ export const getUser = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -1996,6 +1716,7 @@ export const getOrder = /* GraphQL */ `
   query GetOrder($id: ID!) {
     getOrder(id: $id) {
       id
+      stringCode
       info
       title
       description
@@ -2031,6 +1752,7 @@ export const getOrder = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -2086,9 +1808,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -2118,6 +1837,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -2127,6 +1847,7 @@ export const getOrder = /* GraphQL */ `
         services {
           items {
             id
+            stringCode
             info
             title
             description
@@ -2182,9 +1903,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -2214,6 +1932,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -2224,8 +1943,9 @@ export const getOrder = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -2250,53 +1970,7 @@ export const getOrder = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -2367,6 +2041,7 @@ export const getOrder = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -2437,6 +2112,7 @@ export const getOrder = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -2476,6 +2152,7 @@ export const getOrder = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -2498,11 +2175,9 @@ export const getOrder = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -2552,6 +2227,7 @@ export const getOrder = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -2607,9 +2283,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -2639,6 +2312,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -2648,6 +2322,7 @@ export const getOrder = /* GraphQL */ `
         services {
           items {
             id
+            stringCode
             info
             title
             description
@@ -2703,9 +2378,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -2735,6 +2407,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -2745,8 +2418,9 @@ export const getOrder = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -2771,53 +2445,7 @@ export const getOrder = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -2888,6 +2516,7 @@ export const getOrder = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -2958,6 +2587,7 @@ export const getOrder = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -2997,6 +2627,7 @@ export const getOrder = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -3019,11 +2650,9 @@ export const getOrder = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -3056,8 +2685,9 @@ export const getOrder = /* GraphQL */ `
         items {
           id
           creatorUsername
-          orderId
           isApproved
+          dialogId
+          orderId
           candidateId
           createdAt
           updatedAt
@@ -3088,9 +2718,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -3119,6 +2746,7 @@ export const getOrder = /* GraphQL */ `
           }
           order {
             id
+            stringCode
             info
             title
             description
@@ -3174,9 +2802,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -3206,166 +2831,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
-              createdAt
-              updatedAt
-            }
-          }
-        }
-        nextToken
-      }
-      messages {
-        items {
-          id
-          creatorUsername
-          orderId
-          userId
-          createdAt
-          updatedAt
-          user {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          order {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -3379,102 +2845,6 @@ export const getOrder = /* GraphQL */ `
         stringCode
         createdAt
         updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         subCategories {
           items {
             id
@@ -3490,9 +2860,6 @@ export const getOrder = /* GraphQL */ `
               createdAt
               updatedAt
             }
-            orders {
-              nextToken
-            }
           }
           nextToken
         }
@@ -3506,6 +2873,7 @@ export const getOrder = /* GraphQL */ `
           updatedAt
           order {
             id
+            stringCode
             info
             title
             description
@@ -3561,9 +2929,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -3593,6 +2958,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -3610,9 +2976,6 @@ export const getOrder = /* GraphQL */ `
               stringCode
               createdAt
               updatedAt
-            }
-            orders {
-              nextToken
             }
           }
         }
@@ -3655,9 +3018,6 @@ export const getOrder = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -3713,9 +3073,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -3744,6 +3101,7 @@ export const getOrder = /* GraphQL */ `
           }
           order {
             id
+            stringCode
             info
             title
             description
@@ -3799,9 +3157,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -3831,6 +3186,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -3859,6 +3215,7 @@ export const getOrder = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -3914,9 +3271,6 @@ export const getOrder = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -3946,6 +3300,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -3957,28 +3312,9 @@ export const getOrder = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -4002,6 +3338,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -4014,104 +3351,9 @@ export const getOrder = /* GraphQL */ `
         name
         stringCode
         regionId
+        regionName
         createdAt
         updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         region {
           id
           name
@@ -4124,6 +3366,7 @@ export const getOrder = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -4143,6 +3386,7 @@ export const listOrders = /* GraphQL */ `
     listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        stringCode
         info
         title
         description
@@ -4178,6 +3422,7 @@ export const listOrders = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -4198,6 +3443,7 @@ export const listOrders = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -4219,20 +3465,10 @@ export const listOrders = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -4294,6 +3530,7 @@ export const listOrders = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -4335,6 +3572,7 @@ export const listOrders = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -4355,6 +3593,7 @@ export const listOrders = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -4376,20 +3615,10 @@ export const listOrders = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -4451,6 +3680,7 @@ export const listOrders = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -4475,8 +3705,9 @@ export const listOrders = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -4501,53 +3732,7 @@ export const listOrders = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -4572,26 +3757,6 @@ export const listOrders = /* GraphQL */ `
           stringCode
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           subCategories {
             items {
               id
@@ -4613,6 +3778,7 @@ export const listOrders = /* GraphQL */ `
             updatedAt
             order {
               id
+              stringCode
               info
               title
               description
@@ -4691,6 +3857,7 @@ export const listOrders = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -4730,6 +3897,7 @@ export const listOrders = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -4752,11 +3920,9 @@ export const listOrders = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -4781,28 +3947,9 @@ export const listOrders = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -4824,8 +3971,9 @@ export const getOffer = /* GraphQL */ `
     getOffer(id: $id) {
       id
       creatorUsername
-      orderId
       isApproved
+      dialogId
+      orderId
       candidateId
       createdAt
       updatedAt
@@ -4850,6 +3998,7 @@ export const getOffer = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -4905,9 +4054,6 @@ export const getOffer = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -4937,6 +4083,7 @@ export const getOffer = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -4946,6 +4093,7 @@ export const getOffer = /* GraphQL */ `
         services {
           items {
             id
+            stringCode
             info
             title
             description
@@ -5001,9 +4149,6 @@ export const getOffer = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -5033,6 +4178,7 @@ export const getOffer = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -5043,8 +4189,9 @@ export const getOffer = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -5069,53 +4216,7 @@ export const getOffer = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -5186,6 +4287,7 @@ export const getOffer = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -5256,6 +4358,7 @@ export const getOffer = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -5295,6 +4398,7 @@ export const getOffer = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -5317,11 +4421,9 @@ export const getOffer = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -5352,6 +4454,7 @@ export const getOffer = /* GraphQL */ `
       }
       order {
         id
+        stringCode
         info
         title
         description
@@ -5387,6 +4490,7 @@ export const getOffer = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -5407,6 +4511,7 @@ export const getOffer = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -5428,20 +4533,10 @@ export const getOffer = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -5503,6 +4598,7 @@ export const getOffer = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -5544,6 +4640,7 @@ export const getOffer = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -5564,6 +4661,7 @@ export const getOffer = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -5585,20 +4683,10 @@ export const getOffer = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -5660,6 +4748,7 @@ export const getOffer = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -5684,8 +4773,9 @@ export const getOffer = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -5710,53 +4800,7 @@ export const getOffer = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -5781,26 +4825,6 @@ export const getOffer = /* GraphQL */ `
           stringCode
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           subCategories {
             items {
               id
@@ -5822,6 +4846,7 @@ export const getOffer = /* GraphQL */ `
             updatedAt
             order {
               id
+              stringCode
               info
               title
               description
@@ -5900,6 +4925,7 @@ export const getOffer = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -5939,6 +4965,7 @@ export const getOffer = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -5961,11 +4988,9 @@ export const getOffer = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -5990,28 +5015,9 @@ export const getOffer = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -6037,8 +5043,9 @@ export const listOffers = /* GraphQL */ `
       items {
         id
         creatorUsername
-        orderId
         isApproved
+        dialogId
+        orderId
         candidateId
         createdAt
         updatedAt
@@ -6063,6 +5070,7 @@ export const listOffers = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -6083,6 +5091,7 @@ export const listOffers = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -6104,20 +5113,10 @@ export const listOffers = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -6179,6 +5178,7 @@ export const listOffers = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -6201,6 +5201,7 @@ export const listOffers = /* GraphQL */ `
         }
         order {
           id
+          stringCode
           info
           title
           description
@@ -6240,9 +5241,6 @@ export const listOffers = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -6298,9 +5296,6 @@ export const listOffers = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -6331,20 +5326,10 @@ export const listOffers = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -6356,9 +5341,6 @@ export const listOffers = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
@@ -6414,6 +5396,7 @@ export const listOffers = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -6430,11 +5413,9 @@ export const listOffers = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -6449,1208 +5430,166 @@ export const listOffers = /* GraphQL */ `
     }
   }
 `;
+export const listDialogs = /* GraphQL */ `
+  query ListDialogs(
+    $filter: ModelDialogFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDialogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        isAllowed
+        creatorUsername
+        orderId
+        orderStingCode
+        orderTitle
+        offerId
+        clientId
+        clientUsername
+        candidateId
+        candidateUsername
+        createdAt
+        updatedAt
+        messages {
+          items {
+            id
+            isNew
+            creatorId
+            creatorUsername
+            message
+            dialogId
+            date
+            createdAt
+            updatedAt
+            dialog {
+              id
+              isAllowed
+              creatorUsername
+              orderId
+              orderStingCode
+              orderTitle
+              offerId
+              clientId
+              clientUsername
+              candidateId
+              candidateUsername
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getDialog = /* GraphQL */ `
+  query GetDialog($id: ID!) {
+    getDialog(id: $id) {
+      id
+      isAllowed
+      creatorUsername
+      orderId
+      orderStingCode
+      orderTitle
+      offerId
+      clientId
+      clientUsername
+      candidateId
+      candidateUsername
+      createdAt
+      updatedAt
+      messages {
+        items {
+          id
+          isNew
+          creatorId
+          creatorUsername
+          message
+          dialogId
+          date
+          createdAt
+          updatedAt
+          dialog {
+            id
+            isAllowed
+            creatorUsername
+            orderId
+            orderStingCode
+            orderTitle
+            offerId
+            clientId
+            clientUsername
+            candidateId
+            candidateUsername
+            createdAt
+            updatedAt
+            messages {
+              nextToken
+            }
+          }
+        }
+        nextToken
+      }
+    }
+  }
+`;
 export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {
       id
+      isNew
+      creatorId
       creatorUsername
-      orderId
-      userId
+      message
+      dialogId
+      date
       createdAt
       updatedAt
-      user {
+      dialog {
         id
-        isClient
-        isService
-        isOrganization
-        companyName
-        firstName
-        lastName
-        birthDate
-        username
-        login
-        email
-        mobile
-        NIP
-        adressId
-        nationalityId
-        createdAt
-        updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        services {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        offers {
-          items {
-            id
-            creatorUsername
-            orderId
-            isApproved
-            candidateId
-            createdAt
-            updatedAt
-            candidate {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        reviewsCreated {
-          items {
-            id
-            creatorUsername
-            rating
-            text
-            type
-            orderId
-            reviewerId
-            reviewedId
-            createdAt
-            updatedAt
-            reviewer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            reviewed {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        reviewsReceived {
-          items {
-            id
-            creatorUsername
-            rating
-            text
-            type
-            orderId
-            reviewerId
-            reviewedId
-            createdAt
-            updatedAt
-            reviewer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            reviewed {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        adress {
-          id
-          creatorUsername
-          regionId
-          cityId
-          street
-          house
-          nationality {
-            id
-            name
-            stringCode
-            isMain
-            createdAt
-            updatedAt
-          }
-          postcode
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          city {
-            id
-            name
-            stringCode
-            regionId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          region {
-            id
-            name
-            stringCode
-            createdAt
-            updatedAt
-            cities {
-              nextToken
-            }
-          }
-        }
-        nationality {
-          id
-          name
-          stringCode
-          isMain
-          createdAt
-          updatedAt
-        }
-      }
-      order {
-        id
-        info
-        title
-        description
-        images
+        isAllowed
         creatorUsername
-        customerId
-        isServiced
-        isActive
-        serviceId
-        categoryId
-        adressId
-        cityId
+        orderId
+        orderStingCode
+        orderTitle
+        offerId
+        clientId
+        clientUsername
+        candidateId
+        candidateUsername
         createdAt
         updatedAt
-        customer {
-          id
-          isClient
-          isService
-          isOrganization
-          companyName
-          firstName
-          lastName
-          birthDate
-          username
-          login
-          email
-          mobile
-          NIP
-          adressId
-          nationalityId
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          services {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          offers {
-            items {
-              id
-              creatorUsername
-              orderId
-              isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
-              orderId
-              userId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviewsCreated {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviewsReceived {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          adress {
-            id
-            creatorUsername
-            regionId
-            cityId
-            street
-            house
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-            postcode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          nationality {
-            id
-            name
-            stringCode
-            isMain
-            createdAt
-            updatedAt
-          }
-        }
-        service {
-          id
-          isClient
-          isService
-          isOrganization
-          companyName
-          firstName
-          lastName
-          birthDate
-          username
-          login
-          email
-          mobile
-          NIP
-          adressId
-          nationalityId
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          services {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          offers {
-            items {
-              id
-              creatorUsername
-              orderId
-              isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
-              orderId
-              userId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviewsCreated {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviewsReceived {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          adress {
-            id
-            creatorUsername
-            regionId
-            cityId
-            street
-            house
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-            postcode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          nationality {
-            id
-            name
-            stringCode
-            isMain
-            createdAt
-            updatedAt
-          }
-        }
-        offers {
-          items {
-            id
-            creatorUsername
-            orderId
-            isApproved
-            candidateId
-            createdAt
-            updatedAt
-            candidate {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         messages {
           items {
             id
+            isNew
+            creatorId
             creatorUsername
-            orderId
-            userId
+            message
+            dialogId
+            date
             createdAt
             updatedAt
-            user {
+            dialog {
               id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
+              isAllowed
               creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
+              orderId
+              orderStingCode
+              orderTitle
+              offerId
+              clientId
+              clientUsername
+              candidateId
+              candidateUsername
               createdAt
               updatedAt
             }
           }
           nextToken
-        }
-        category {
-          id
-          name
-          stringCode
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          subCategories {
-            items {
-              id
-              name
-              stringCode
-              categoryId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-        }
-        subCategories {
-          items {
-            id
-            orderId
-            subCategoryId
-            createdAt
-            updatedAt
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            subCategory {
-              id
-              name
-              stringCode
-              categoryId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        reviews {
-          items {
-            id
-            creatorUsername
-            rating
-            text
-            type
-            orderId
-            reviewerId
-            reviewedId
-            createdAt
-            updatedAt
-            reviewer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            reviewed {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        adress {
-          id
-          creatorUsername
-          regionId
-          cityId
-          street
-          house
-          nationality {
-            id
-            name
-            stringCode
-            isMain
-            createdAt
-            updatedAt
-          }
-          postcode
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          city {
-            id
-            name
-            stringCode
-            regionId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          region {
-            id
-            name
-            stringCode
-            createdAt
-            updatedAt
-            cities {
-              nextToken
-            }
-          }
-        }
-        city {
-          id
-          name
-          stringCode
-          regionId
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          region {
-            id
-            name
-            stringCode
-            createdAt
-            updatedAt
-            cities {
-              nextToken
-            }
-          }
         }
       }
     }
@@ -7665,411 +5604,41 @@ export const listMessages = /* GraphQL */ `
     listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        isNew
+        creatorId
         creatorUsername
-        orderId
-        userId
+        message
+        dialogId
+        date
         createdAt
         updatedAt
-        user {
+        dialog {
           id
-          isClient
-          isService
-          isOrganization
-          companyName
-          firstName
-          lastName
-          birthDate
-          username
-          login
-          email
-          mobile
-          NIP
-          adressId
-          nationalityId
-          createdAt
-          updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          services {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          offers {
-            items {
-              id
-              creatorUsername
-              orderId
-              isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
-              orderId
-              userId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviewsCreated {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviewsReceived {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          adress {
-            id
-            creatorUsername
-            regionId
-            cityId
-            street
-            house
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-            postcode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          nationality {
-            id
-            name
-            stringCode
-            isMain
-            createdAt
-            updatedAt
-          }
-        }
-        order {
-          id
-          info
-          title
-          description
-          images
+          isAllowed
           creatorUsername
-          customerId
-          isServiced
-          isActive
-          serviceId
-          categoryId
-          adressId
-          cityId
+          orderId
+          orderStingCode
+          orderTitle
+          offerId
+          clientId
+          clientUsername
+          candidateId
+          candidateUsername
           createdAt
           updatedAt
-          customer {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          service {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          offers {
-            items {
-              id
-              creatorUsername
-              orderId
-              isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           messages {
             items {
               id
+              isNew
+              creatorId
               creatorUsername
-              orderId
-              userId
+              message
+              dialogId
+              date
               createdAt
               updatedAt
             }
             nextToken
-          }
-          category {
-            id
-            name
-            stringCode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            subCategories {
-              nextToken
-            }
-          }
-          subCategories {
-            items {
-              id
-              orderId
-              subCategoryId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviews {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          adress {
-            id
-            creatorUsername
-            regionId
-            cityId
-            street
-            house
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-            postcode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          city {
-            id
-            name
-            stringCode
-            regionId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
           }
         }
       }
@@ -8090,102 +5659,6 @@ export const listCategorys = /* GraphQL */ `
         stringCode
         createdAt
         updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         subCategories {
           items {
             id
@@ -8200,9 +5673,6 @@ export const listCategorys = /* GraphQL */ `
               stringCode
               createdAt
               updatedAt
-            }
-            orders {
-              nextToken
             }
           }
           nextToken
@@ -8220,254 +5690,6 @@ export const getCategory = /* GraphQL */ `
       stringCode
       createdAt
       updatedAt
-      orders {
-        items {
-          id
-          info
-          title
-          description
-          images
-          creatorUsername
-          customerId
-          isServiced
-          isActive
-          serviceId
-          categoryId
-          adressId
-          cityId
-          createdAt
-          updatedAt
-          customer {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          service {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          offers {
-            items {
-              id
-              creatorUsername
-              orderId
-              isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
-              orderId
-              userId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          category {
-            id
-            name
-            stringCode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            subCategories {
-              nextToken
-            }
-          }
-          subCategories {
-            items {
-              id
-              orderId
-              subCategoryId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviews {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          adress {
-            id
-            creatorUsername
-            regionId
-            cityId
-            street
-            house
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-            postcode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          city {
-            id
-            name
-            stringCode
-            regionId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-        }
-        nextToken
-      }
       subCategories {
         items {
           id
@@ -8482,22 +5704,9 @@ export const getCategory = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
-          }
-          orders {
-            items {
-              id
-              orderId
-              subCategoryId
-              createdAt
-              updatedAt
-            }
-            nextToken
           }
         }
         nextToken
@@ -8525,26 +5734,6 @@ export const listSubCategorys = /* GraphQL */ `
           stringCode
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           subCategories {
             items {
               id
@@ -8556,41 +5745,6 @@ export const listSubCategorys = /* GraphQL */ `
             }
             nextToken
           }
-        }
-        orders {
-          items {
-            id
-            orderId
-            subCategoryId
-            createdAt
-            updatedAt
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            subCategory {
-              id
-              name
-              stringCode
-              categoryId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
         }
       }
       nextToken
@@ -8612,102 +5766,6 @@ export const getSubCategory = /* GraphQL */ `
         stringCode
         createdAt
         updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         subCategories {
           items {
             id
@@ -8723,133 +5781,9 @@ export const getSubCategory = /* GraphQL */ `
               createdAt
               updatedAt
             }
-            orders {
-              nextToken
-            }
           }
           nextToken
         }
-      }
-      orders {
-        items {
-          id
-          orderId
-          subCategoryId
-          createdAt
-          updatedAt
-          order {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          subCategory {
-            id
-            name
-            stringCode
-            categoryId
-            createdAt
-            updatedAt
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            orders {
-              nextToken
-            }
-          }
-        }
-        nextToken
       }
     }
   }
@@ -8864,6 +5798,7 @@ export const getOrderSubCategory = /* GraphQL */ `
       updatedAt
       order {
         id
+        stringCode
         info
         title
         description
@@ -8899,6 +5834,7 @@ export const getOrderSubCategory = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -8919,6 +5855,7 @@ export const getOrderSubCategory = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -8940,20 +5877,10 @@ export const getOrderSubCategory = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -9015,6 +5942,7 @@ export const getOrderSubCategory = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -9056,6 +5984,7 @@ export const getOrderSubCategory = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -9076,6 +6005,7 @@ export const getOrderSubCategory = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -9097,20 +6027,10 @@ export const getOrderSubCategory = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -9172,6 +6092,7 @@ export const getOrderSubCategory = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -9196,8 +6117,9 @@ export const getOrderSubCategory = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -9222,53 +6144,7 @@ export const getOrderSubCategory = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -9293,26 +6169,6 @@ export const getOrderSubCategory = /* GraphQL */ `
           stringCode
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           subCategories {
             items {
               id
@@ -9334,6 +6190,7 @@ export const getOrderSubCategory = /* GraphQL */ `
             updatedAt
             order {
               id
+              stringCode
               info
               title
               description
@@ -9412,6 +6269,7 @@ export const getOrderSubCategory = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -9451,6 +6309,7 @@ export const getOrderSubCategory = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -9473,11 +6332,9 @@ export const getOrderSubCategory = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -9502,28 +6359,9 @@ export const getOrderSubCategory = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -9549,26 +6387,6 @@ export const getOrderSubCategory = /* GraphQL */ `
           stringCode
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           subCategories {
             items {
               id
@@ -9580,41 +6398,6 @@ export const getOrderSubCategory = /* GraphQL */ `
             }
             nextToken
           }
-        }
-        orders {
-          items {
-            id
-            orderId
-            subCategoryId
-            createdAt
-            updatedAt
-            order {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            subCategory {
-              id
-              name
-              stringCode
-              categoryId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
         }
       }
     }
@@ -9639,6 +6422,7 @@ export const listOrderSubCategorys = /* GraphQL */ `
         updatedAt
         order {
           id
+          stringCode
           info
           title
           description
@@ -9678,9 +6462,6 @@ export const listOrderSubCategorys = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -9736,9 +6517,6 @@ export const listOrderSubCategorys = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -9769,20 +6547,10 @@ export const listOrderSubCategorys = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -9794,9 +6562,6 @@ export const listOrderSubCategorys = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
@@ -9852,6 +6617,7 @@ export const listOrderSubCategorys = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -9868,11 +6634,9 @@ export const listOrderSubCategorys = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -9895,22 +6659,9 @@ export const listOrderSubCategorys = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
-          }
-          orders {
-            items {
-              id
-              orderId
-              subCategoryId
-              createdAt
-              updatedAt
-            }
-            nextToken
           }
         }
       }
@@ -9952,6 +6703,7 @@ export const getReview = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -10007,9 +6759,6 @@ export const getReview = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -10039,6 +6788,7 @@ export const getReview = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -10048,6 +6798,7 @@ export const getReview = /* GraphQL */ `
         services {
           items {
             id
+            stringCode
             info
             title
             description
@@ -10103,9 +6854,6 @@ export const getReview = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -10135,6 +6883,7 @@ export const getReview = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -10145,8 +6894,9 @@ export const getReview = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -10171,53 +6921,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -10288,6 +6992,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -10358,6 +7063,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -10397,6 +7103,7 @@ export const getReview = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -10419,11 +7126,9 @@ export const getReview = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -10473,6 +7178,7 @@ export const getReview = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -10528,9 +7234,6 @@ export const getReview = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -10560,6 +7263,7 @@ export const getReview = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -10569,6 +7273,7 @@ export const getReview = /* GraphQL */ `
         services {
           items {
             id
+            stringCode
             info
             title
             description
@@ -10624,9 +7329,6 @@ export const getReview = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -10656,6 +7358,7 @@ export const getReview = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -10666,8 +7369,9 @@ export const getReview = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -10692,53 +7396,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -10809,6 +7467,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -10879,6 +7538,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -10918,6 +7578,7 @@ export const getReview = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -10940,11 +7601,9 @@ export const getReview = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -10975,6 +7634,7 @@ export const getReview = /* GraphQL */ `
       }
       order {
         id
+        stringCode
         info
         title
         description
@@ -11010,6 +7670,7 @@ export const getReview = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11030,6 +7691,7 @@ export const getReview = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11051,20 +7713,10 @@ export const getReview = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -11126,6 +7778,7 @@ export const getReview = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -11167,6 +7820,7 @@ export const getReview = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11187,6 +7841,7 @@ export const getReview = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11208,20 +7863,10 @@ export const getReview = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -11283,6 +7928,7 @@ export const getReview = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -11307,8 +7953,9 @@ export const getReview = /* GraphQL */ `
           items {
             id
             creatorUsername
-            orderId
             isApproved
+            dialogId
+            orderId
             candidateId
             createdAt
             updatedAt
@@ -11333,53 +7980,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
-        messages {
-          items {
-            id
-            creatorUsername
-            orderId
-            userId
-            createdAt
-            updatedAt
-            user {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            order {
-              id
+              stringCode
               info
               title
               description
@@ -11404,26 +8005,6 @@ export const getReview = /* GraphQL */ `
           stringCode
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           subCategories {
             items {
               id
@@ -11445,6 +8026,7 @@ export const getReview = /* GraphQL */ `
             updatedAt
             order {
               id
+              stringCode
               info
               title
               description
@@ -11523,6 +8105,7 @@ export const getReview = /* GraphQL */ `
             }
             order {
               id
+              stringCode
               info
               title
               description
@@ -11562,6 +8145,7 @@ export const getReview = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11584,11 +8168,9 @@ export const getReview = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -11613,28 +8195,9 @@ export const getReview = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -11689,6 +8252,7 @@ export const listReviews = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11709,6 +8273,7 @@ export const listReviews = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11730,20 +8295,10 @@ export const listReviews = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -11805,6 +8360,7 @@ export const listReviews = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -11846,6 +8402,7 @@ export const listReviews = /* GraphQL */ `
           orders {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11866,6 +8423,7 @@ export const listReviews = /* GraphQL */ `
           services {
             items {
               id
+              stringCode
               info
               title
               description
@@ -11887,20 +8445,10 @@ export const listReviews = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -11962,6 +8510,7 @@ export const listReviews = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -11984,6 +8533,7 @@ export const listReviews = /* GraphQL */ `
         }
         order {
           id
+          stringCode
           info
           title
           description
@@ -12023,9 +8573,6 @@ export const listReviews = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -12081,9 +8628,6 @@ export const listReviews = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -12114,20 +8658,10 @@ export const listReviews = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -12139,9 +8673,6 @@ export const listReviews = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
@@ -12197,6 +8728,7 @@ export const listReviews = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -12213,11 +8745,9 @@ export const listReviews = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -12260,6 +8790,7 @@ export const listAdresss = /* GraphQL */ `
         orders {
           items {
             id
+            stringCode
             info
             title
             description
@@ -12315,9 +8846,6 @@ export const listAdresss = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             category {
               id
               name
@@ -12347,6 +8875,7 @@ export const listAdresss = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -12358,28 +8887,9 @@ export const listAdresss = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name
@@ -12403,6 +8913,7 @@ export const listAdresss = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -12437,6 +8948,7 @@ export const getAdress = /* GraphQL */ `
       orders {
         items {
           id
+          stringCode
           info
           title
           description
@@ -12476,9 +8988,6 @@ export const getAdress = /* GraphQL */ `
               nextToken
             }
             offers {
-              nextToken
-            }
-            messages {
               nextToken
             }
             reviewsCreated {
@@ -12534,9 +9043,6 @@ export const getAdress = /* GraphQL */ `
             offers {
               nextToken
             }
-            messages {
-              nextToken
-            }
             reviewsCreated {
               nextToken
             }
@@ -12567,20 +9073,10 @@ export const getAdress = /* GraphQL */ `
             items {
               id
               creatorUsername
-              orderId
               isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
+              dialogId
               orderId
-              userId
+              candidateId
               createdAt
               updatedAt
             }
@@ -12592,9 +9088,6 @@ export const getAdress = /* GraphQL */ `
             stringCode
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             subCategories {
               nextToken
             }
@@ -12650,6 +9143,7 @@ export const getAdress = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -12666,11 +9160,9 @@ export const getAdress = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -12687,104 +9179,9 @@ export const getAdress = /* GraphQL */ `
         name
         stringCode
         regionId
+        regionName
         createdAt
         updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         region {
           id
           name
@@ -12797,6 +9194,7 @@ export const getAdress = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -12816,11 +9214,9 @@ export const getAdress = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -12842,256 +9238,9 @@ export const getCity = /* GraphQL */ `
       name
       stringCode
       regionId
+      regionName
       createdAt
       updatedAt
-      orders {
-        items {
-          id
-          info
-          title
-          description
-          images
-          creatorUsername
-          customerId
-          isServiced
-          isActive
-          serviceId
-          categoryId
-          adressId
-          cityId
-          createdAt
-          updatedAt
-          customer {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          service {
-            id
-            isClient
-            isService
-            isOrganization
-            companyName
-            firstName
-            lastName
-            birthDate
-            username
-            login
-            email
-            mobile
-            NIP
-            adressId
-            nationalityId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            services {
-              nextToken
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            reviewsCreated {
-              nextToken
-            }
-            reviewsReceived {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-          }
-          offers {
-            items {
-              id
-              creatorUsername
-              orderId
-              isApproved
-              candidateId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          messages {
-            items {
-              id
-              creatorUsername
-              orderId
-              userId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          category {
-            id
-            name
-            stringCode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            subCategories {
-              nextToken
-            }
-          }
-          subCategories {
-            items {
-              id
-              orderId
-              subCategoryId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          reviews {
-            items {
-              id
-              creatorUsername
-              rating
-              text
-              type
-              orderId
-              reviewerId
-              reviewedId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          adress {
-            id
-            creatorUsername
-            regionId
-            cityId
-            street
-            house
-            nationality {
-              id
-              name
-              stringCode
-              isMain
-              createdAt
-              updatedAt
-            }
-            postcode
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-          city {
-            id
-            name
-            stringCode
-            regionId
-            createdAt
-            updatedAt
-            orders {
-              nextToken
-            }
-            region {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-          }
-        }
-        nextToken
-      }
       region {
         id
         name
@@ -13104,11 +9253,9 @@ export const getCity = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -13135,104 +9282,9 @@ export const listCitys = /* GraphQL */ `
         name
         stringCode
         regionId
+        regionName
         createdAt
         updatedAt
-        orders {
-          items {
-            id
-            info
-            title
-            description
-            images
-            creatorUsername
-            customerId
-            isServiced
-            isActive
-            serviceId
-            categoryId
-            adressId
-            cityId
-            createdAt
-            updatedAt
-            customer {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            service {
-              id
-              isClient
-              isService
-              isOrganization
-              companyName
-              firstName
-              lastName
-              birthDate
-              username
-              login
-              email
-              mobile
-              NIP
-              adressId
-              nationalityId
-              createdAt
-              updatedAt
-            }
-            offers {
-              nextToken
-            }
-            messages {
-              nextToken
-            }
-            category {
-              id
-              name
-              stringCode
-              createdAt
-              updatedAt
-            }
-            subCategories {
-              nextToken
-            }
-            reviews {
-              nextToken
-            }
-            adress {
-              id
-              creatorUsername
-              regionId
-              cityId
-              street
-              house
-              postcode
-              createdAt
-              updatedAt
-            }
-            city {
-              id
-              name
-              stringCode
-              regionId
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-        }
         region {
           id
           name
@@ -13245,6 +9297,7 @@ export const listCitys = /* GraphQL */ `
               name
               stringCode
               regionId
+              regionName
               createdAt
               updatedAt
             }
@@ -13275,11 +9328,9 @@ export const listRegions = /* GraphQL */ `
             name
             stringCode
             regionId
+            regionName
             createdAt
             updatedAt
-            orders {
-              nextToken
-            }
             region {
               id
               name
@@ -13309,28 +9360,9 @@ export const getRegion = /* GraphQL */ `
           name
           stringCode
           regionId
+          regionName
           createdAt
           updatedAt
-          orders {
-            items {
-              id
-              info
-              title
-              description
-              images
-              creatorUsername
-              customerId
-              isServiced
-              isActive
-              serviceId
-              categoryId
-              adressId
-              cityId
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
           region {
             id
             name

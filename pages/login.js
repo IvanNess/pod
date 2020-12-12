@@ -6,9 +6,9 @@ import Link from "next/link"
 import { getUserByEmail } from "../utils/graphql-utils"
 import { Auth } from "aws-amplify"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { login } from "../redux/actions"
+import { login, finishLoading } from "../redux/actions"
 
 
 const Login = () => {
@@ -19,6 +19,10 @@ const Login = () => {
 
     const dispatch = useDispatch()
     const {data: user, loading} = useSelector(state=>state.user)
+
+    useEffect(()=>{
+        dispatch(finishLoading())
+    }, [dispatch])
 
     if(user){
         router.push(`/user/${user.username}`)
@@ -58,7 +62,7 @@ const Login = () => {
                     <Input.Password/>
                 </Form.Item>
 
-                <ButtonItem title="Login" layout={tailFormItemLayout} loading={loading && user===false}/>
+                <ButtonItem title="Login" layout={tailFormItemLayout} disabled={loading}/>
 
             </Form>
 

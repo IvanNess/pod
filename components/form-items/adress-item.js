@@ -6,24 +6,24 @@ import PostcodeItem from './postcode-item';
 
 const AdressItem = ({formRef, validateTrigger}) => {
 
-    const [regionId, setRegionId] = useState(null)
+    const [regionName, setRegionName] = useState(null)
 
-    const regionChanged = async (regionId)=>{
+    const regionChanged = async (regionName)=>{
         console.log('region changed')
-        setRegionId(regionId)
-        formRef.current.setFieldsValue({ miastoId: null })
+        setRegionName(regionName)
+        formRef.current.setFieldsValue({ miasto: null })
     }
     
-    const cityChanged = (regionId)=>{
+    const cityChanged = (regionName)=>{
         console.log('city changed')
-        formRef.current.setFieldsValue({ wojewodstwoId: regionId })
+        formRef.current.setFieldsValue({ wojewodstwo: regionName })
     }
 
     return (
         <>
             <RegionItem onChange={regionChanged}/>
 
-            <CityItem regionId={regionId} onChangeCb={cityChanged}/>
+            <CityItem regionName={regionName} onChangeCb={cityChanged}/>
 
             <InputItem name="street" label="Street, House, Flat number" message= 'Please input street, house and flat number.'/>
 
